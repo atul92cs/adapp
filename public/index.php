@@ -1,6 +1,6 @@
 <?php
  use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 require_once '../include/dboperations.php';
@@ -45,6 +45,31 @@ $app->post('/register',function(Request $req,Response $res)
 		$res->getBody()->write(json_encode($responseData));
 	}
 	
+});
+$app->post('/login',function(Request $req,Response $res)
+{
+	if(isTheseParametersAvailable(array('phone','password')))
+	{
+		$requestedData=$req->getParsedBody();
+		$phone=$requestedData['phone'];
+		$password=$requestedData['password'];
+		 $db=new DbOperation();
+		 $responseData=array();
+		
+		 
+		 $result=$db->userLogin($phone,$password);
+		 if($result==true)
+		 {
+			 $responseData['error']=false;
+			 $responseData['user']='user logged in';
+		 }
+		 else
+		 {
+			 $responseData['error']=true;
+			 $responseData['Message']='Error:Please try again';
+		 }
+	      $res->getBody()->write(json_encode($responseData));	
+	}
 });
 function isTheseParametersAvailable($required_fields)
  {

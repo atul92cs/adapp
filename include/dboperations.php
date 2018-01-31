@@ -13,7 +13,7 @@ class DbOperation
 		if(!$this->isUserExist($phone))
 		{
 		$pass=md5($password);
-		$stmt=$this->con->prepare("INSERT INTO users (name,password,dob,gender,referalcode,phone)VALUES(?,?,?,?,?,?)");
+		$stmt=$this->con->prepare("INSERT INTO users (name,password,dob,gender,referalcode,phone) VALUES (?,?,?,?,?,?)");
 		$stmt->bind_param("ssssss",$name,$pass,$dob,$gender,$referal,$phone);
 		if($stmt->execute())
 			return USER_CREATED;
@@ -26,7 +26,7 @@ class DbOperation
 	function userLogin($phone,$password)
 	{
 		$pass=md5($password);
-		$stmt=$this->con->prepare("SELECT id FROM users WHERE phone=? AND password=?");
+		$stmt=$this->con->prepare("SELECT * FROM users WHERE phone=? AND password=?");
 		$stmt->bind_param("ss",$phone,$pass);
 		$stmt->execute();
 		$stmt->store_result();
