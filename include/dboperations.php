@@ -52,7 +52,7 @@ class DbOperation
 	}
 	function getUserByPhone($phone)
 	{
-		$stmt=$this->con->prepare("SELECT id,name,phone, FROM users WHERE phone=?");
+		$stmt=$this->con->prepare("SELECT id,name,phone FROM users WHERE phone=?");
 		$stmt->bind_param("s",$phone);
 		$stmt->execute();
 		$stmt->bind_result($id,$name,$phone);
