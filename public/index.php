@@ -3,7 +3,7 @@
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
-require_once '../includes/dbOperation.php';
+require_once '../includes/dboperations.php';
 $app= new \Slim\App(['settings'=>['displayErrorDetails'=>true]]);
 $app->get('/test',function(Request $req,Response $res){
 	    $result="it works.app is updated";
