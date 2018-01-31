@@ -63,7 +63,7 @@ function isTheseParametersAvailable($required_fields)
 	  {
 		  $response=array();
 		  $response["error"]=true;
-		  $response["message"]='Required Field(s)'.substr($error_fields,0,-2).'is missing or empty';
+		  $response["message"]='Required Field(s)'.substr($error_fields,0,-1).'is missing or empty';
 		  echo json_encode($response);
 		  return false;
 	  }
