@@ -9,7 +9,8 @@ $app->get('/test',function(Request $req,Response $res){
 	    $result="it works.app is updated";
 		$res->getBody()->write(json_encode(array($result)));
 });
-$app->post('/register',function(Request $req,Response $res){
+$app->post('/register',function(Request $req,Response $res)
+{
 	if(isTheseParametersAvailable(array('name','password','dob','gender','referalcode','phone')))
 	{
 		$requestedData=$req->getParsedBody();
