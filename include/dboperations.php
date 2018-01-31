@@ -14,7 +14,7 @@ class DbOperation
 		{
 		$pass=md5($password);
 		$stmt=$this->con->prepare("INSERT INTO user(name,password,dob,gender,referalcode,phone)VALUES(?,?,?,?,?,?)");
-		$stmt->bind_param("sssss",$name,$pass,$dob,$gender,$referal,$phone);
+		$stmt->bind_param("ssssss",$name,$pass,$dob,$gender,$referal,$phone);
 		if($stmt->execute())
 			return USER_CREATED;
 		
