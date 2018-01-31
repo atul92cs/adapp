@@ -26,7 +26,7 @@ class DbOperation
 	function userLogin($phone,$password)
 	{
 		$pass=md5($password);
-		$stmt=$this->con->prepare("SELECT id FROM user WHERE phone=? AND password=?");
+		$stmt=$this->con->prepare("SELECT id FROM users WHERE phone=? AND password=?");
 		$stmt->bind_param("ss",$phone,$pass);
 		$stmt->execute();
 		$stmt->store_result();
@@ -44,7 +44,7 @@ class DbOperation
 	}
 	function isUserExist($phone)
 	{
-		$stmt=$this->con->prepare("SELECT * FROM user WHERE phone=?");
+		$stmt=$this->con->prepare("SELECT * FROM users WHERE phone=?");
 		$stmt->bind_param("s",$phone);
 		$stmt->execute();
 		$stmt->store_result();
@@ -52,7 +52,7 @@ class DbOperation
 	}
 	function getUserByPhone($phone)
 	{
-		$stmt=$this->con->prepare("SELECT id,name,phone, FROM user WHERE phone=?");
+		$stmt=$this->con->prepare("SELECT id,name,phone, FROM users WHERE phone=?");
 		$stmt->bind_param("s",$phone);
 		$stmt->execute();
 		$stmt->bind_result($id,$name,$phone);
